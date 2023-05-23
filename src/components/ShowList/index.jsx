@@ -1,7 +1,12 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import {ShowCard, FilterSeries} from '..';
 
-const ShowList = ({ showData, ratingOrder, englishOnly, setRatingOrder, setEnglishOnly  }) => {
+const ShowList = ({  ratingOrder, englishOnly, setRatingOrder, setEnglishOnly  }) => {
+
+   const shows = useSelector((state) => state.shows.shows);
+console.log('SHOWLIST:', shows)
+
 
   function compareRating(a, b) {
     if (!ratingOrder) {
@@ -14,7 +19,7 @@ const ShowList = ({ showData, ratingOrder, englishOnly, setRatingOrder, setEngli
 }
 
   function renderShows() {
-    return showData
+    return shows
         .filter(s => s.summary && s.image ? true : false)
         .filter(s => (s.language == "English" || !englishOnly) ? true : false)
         .sort(compareRating)

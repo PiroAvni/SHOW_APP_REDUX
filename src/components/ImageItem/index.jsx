@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+
 import { Link } from 'react-router-dom'
 
 const ImageItem = ({ show }) => {
-
+  
   return (
     <Link to={`${show.id}`}>
    {/* <Link to="/shows/:id"> */}

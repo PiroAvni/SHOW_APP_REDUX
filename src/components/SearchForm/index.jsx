@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
-
+import { bindActionCreators } from "redux";
+import * as actionCreators from '../../actions-creators/searchActions';
+import { useSelector, useDispatch } from "react-redux";
 
 const SearchForm = ({ handleSearch }) => {
-  const [show, setShow] = useState('');
+ const [show, setShow] = useState('');
+
+  const dispatch = useDispatch();
+  const {setSearch, searchAPI} = bindActionCreators(actionCreators, dispatch)
+
+  const search = useSelector((state) => state.shows.search)
 
   function handleInput(e) {
-    setShow(e.target.value)
+    dispatch(setSearch(e.target.value))
+    //  dispatch(searchAPI)
+    
   }
 
   function handleSubmit(e) {
     e.preventDefault()
     handleSearch(show)
-    setShow('')
+   setSearch('')
   }
 
   return (

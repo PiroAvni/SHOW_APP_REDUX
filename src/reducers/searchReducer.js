@@ -2,31 +2,37 @@ const initialState = {
   shows: [],
   IsLoading: true,
   error: null,
+  search: "Lost",
 };
 
-const showsReducer = (state = initialState, action) => {
+const searchReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_SHOWS_REQUEST":
+    case "SEARCH_REQUEST":
       return {
         ...state,
         isLoading: true,
         error: null,
       };
-    case "FETCH_SHOWS_SUCCESS":
+    case "SEARCH_SUCCESS":
       return {
         ...state,
         isLoading: false,
         shows: action.payload,
       };
-    case "FETCH_SHOWS_FAILED":
+    case "SEARCH_FAILED":
       return {
         ...state,
         isLoading: false,
         error: action.payload,
-      };
-    default:
-      return state;
-  }
+      }
+//     case "SET_SEARCH_QUERY":
+//       return {
+//         ...state,
+//         search: action.payload,
+//       };
+//     default:
+//       return state;
+   }
 };
 
-export default showsReducer;
+export default searchReducer;
